@@ -14,8 +14,18 @@ app.use(express.json())
 require("express-async-errors")
 
 /* ------------------------------------------------------- */
-//* Routes:
+//* Template
+app.set("view engine", "ejs")
 
+/* ------------------------------------------------------- */
+//* Routes:
+app.all("/", (req, res) => {
+    res.render("index.ejs")
+    // res.send({
+    //     error: false,
+    //     message: "Welcome Todo-EJS"
+    // })
+})
 app.use("/todos", require("./app/routes/todo.router"))
 
 /* ------------------------------------------------------- */
@@ -23,8 +33,8 @@ const errorHandler = (err, req, res, next) => {
     const errorStatusCode = res.errorStatusCode ?? 500
     console.log("errorHandler worked.")
     res.status(errorStatusCode).send({
-        error: true, 
-        message: err.message, 
+        error: true,
+        message: err.message,
         cause: err.cause
     })
 }
