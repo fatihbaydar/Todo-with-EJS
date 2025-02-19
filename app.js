@@ -16,17 +16,19 @@ require("express-async-errors")
 /* ------------------------------------------------------- */
 //* Template
 app.set("view engine", "ejs")
+app.set("views", "./public")
 
 /* ------------------------------------------------------- */
 //* Routes:
 app.all("/", (req, res) => {
-    res.render("index.ejs")
-    // res.send({
-    //     error: false,
-    //     message: "Welcome Todo-EJS"
-    // })
+    // res.render("index.ejs")
+    res.send(`
+        <p><a href="/view">Todo Template</a></p>
+        <p><a href="/api">Todo RestAPI</a></p>
+    `)
 })
-app.use("/todos", require("./app/routes/todo.router"))
+app.use("/view", require("./app/routes/todo.router.view"))
+app.use("/api", require("./app/routes/todo.router.api"))
 
 /* ------------------------------------------------------- */
 const errorHandler = (err, req, res, next) => {
