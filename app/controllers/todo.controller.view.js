@@ -1,13 +1,18 @@
 "use strict";
 
 const Todo = require("../models/todo.model")
+const PRIORITIES = {
+    "-1": "low",
+    "0": "normal",
+    "1": "high"
+}
 
 module.exports = {
     list: async (req, res) => {
 
         const data = await Todo.findAndCountAll()
 
-        res.render("index")
+        res.render("index", { todos: data.rows, count: data.count, priorities:PRIORITIES })
     },
 
     create: async (req, res) => {
