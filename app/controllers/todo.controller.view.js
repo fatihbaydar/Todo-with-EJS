@@ -12,7 +12,7 @@ module.exports = {
 
         const data = await Todo.findAndCountAll()
 
-        res.render("index", { todos: data.rows, count: data.count, priorities:PRIORITIES })
+        res.render("index", { todos: data.rows, count: data.count, priorities: PRIORITIES })
     },
 
     create: async (req, res) => {
@@ -29,10 +29,7 @@ module.exports = {
 
         const data = await Todo.findByPk(req.params.id)
 
-        res.status(200).send({
-            error: false,
-            result: data
-        })
+        res.render("todoRead", { todo: data, priorities: PRIORITIES })
     },
 
     update: async (req, res) => {
