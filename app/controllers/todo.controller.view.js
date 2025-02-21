@@ -18,7 +18,7 @@ module.exports = {
     create: async (req, res) => {
         if (req.method === "POST") {
             const data = await Todo.create(req.body)
-            if(data) res.redirect("/view")
+            if (data) res.redirect("/view")
         } else {
             res.render("todoCreate", { priorities: PRIORITIES })
         }
@@ -33,14 +33,14 @@ module.exports = {
 
     update: async (req, res) => {
 
-        const data = await Todo.update(req.body, { where: { id: req.params.id } })
+        if (req.method === "POST") {
+            const data = await Todo.update(req.body, { where: { id: req.params.id } })
 
-        res.status(202).send({
-            error: false,
-            result: await Todo.findByPk(req.params.id),
-            message: "Updated",
-            count: data
-        })
+            if (data) res.redirect("/view")
+        } else {
+            const data = await Todo.findByPk(req.params.id)
+            res.render("todoUpdate", { todo: data, priorities: PRIORITIES })
+        }
     },
 
     delete: async (req, res) => {

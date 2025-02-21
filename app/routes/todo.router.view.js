@@ -14,8 +14,9 @@ const todo = require("../controllers/todo.controller.view")
 //     .delete(todo.delete)
 
 router.get("/", todo.list)
-router.all("/create",todo.create)
+router.all("/create", todo.create)
 router.get("/:id", todo.read)
+router.all("/:id/update", todo.update)
 router.get("/:id/delete", todo.delete)
 
 module.exports = router
