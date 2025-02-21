@@ -27,7 +27,7 @@
               <th>Priority</th>
               <th>IsDone</th>
               <th>CreatedAt</th>
-              <th><a href="#" class="btn btn-primary">CREATE</a></th>
+              <th><a href="/view/create" class="btn btn-primary">CREATE</a></th>
             </tr>
           </thead>
           <tbody>
@@ -42,7 +42,7 @@
               <td>
                 <a href="/view/<%= todo.id %>" class="btn btn-sm btn-secondary">Read</a>
                 <a href="" class="btn btn-sm btn-primary">Update</a>
-                <a href="" class="btn btn-sm btn-danger">Delete</a>
+                <a href="/view/<%= todo.id %>/delete" class="btn btn-sm btn-danger"  onclick="confirm('are you sure')">Delete</a>
               </td>
             </tr>
             <% } %>

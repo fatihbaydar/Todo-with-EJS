@@ -16,13 +16,12 @@ module.exports = {
     },
 
     create: async (req, res) => {
-
-        const data = await Todo.create(req.body)
-
-        res.status(201).send({
-            error: false,
-            result: data
-        })
+        if (req.method === "POST") {
+            const data = await Todo.create(req.body)
+            if(data) res.redirect("/view")
+        } else {
+            res.render("todoCreate", { priorities: PRIORITIES })
+        }
     },
 
     read: async (req, res) => {
@@ -50,7 +49,7 @@ module.exports = {
 
         if (data > 0) {
 
-            res.sendStatus(204)
+            res.redirect("/view")
 
         } else {
             res.errorStatusCode = 404
