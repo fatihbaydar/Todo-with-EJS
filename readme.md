@@ -1,0 +1,2 @@
+ ## This is a todo project with EJS. I used sequelize. Firstly in view folder there is basic EJS codes.
+ ## In main project the users can add, update and delete a todo in to the todos table. With error.ejs file the user can find the source of the error.
